@@ -281,6 +281,7 @@ async function displayFavorites() {
     
     document.getElementById('favoritesList').innerHTML = html;
 }
+
 // ========== CHATBOT FUNCTIONS ==========
 
 function initializeChatbot() {
