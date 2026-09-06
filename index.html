@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Explorer - Best Pokédex</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <span class="logo-icon">⚡</span>
+                <h1 class="logo">Pokémon Explorer</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" onclick="showHome()" class="nav-link active-link">🏠 Home</a></li>
+                <li><a href="#" onclick="showPokedex()" class="nav-link">📚 Pokédex</a></li>
+                <li><a href="#" onclick="showFavorites()" class="nav-link">⭐ Favorites</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <!-- Home Section -->
+        <section id="homeSection" class="section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h2 class="hero-title">Welcome to Pokémon Explorer</h2>
+                    <p class="hero-subtitle">Discover and catch all Pokémon from every generation</p>
+                    <div class="search-bar">
+                        <div class="search-wrapper">
+                            <input type="text" id="pokemonInput" placeholder="Search Pokémon (name or ID)..." onkeyup="handleSearch()" class="search-input">
+                            <button onclick="fetchPokemon()" class="btn-primary search-btn">🔍 Search</button>
+                        </div>
+                    </div>
+                    <div class="quick-links">
+                        <span class="quick-title">Quick Links:</span>
+                        <button onclick="quickSearch('pikachu')" class="quick-btn">Pikachu</button>
+                        <button onclick="quickSearch('charizard')" class="quick-btn">Charizard</button>
+                        <button onclick="quickSearch('dragonite')" class="quick-btn">Dragonite</button>
+                        <button onclick="quickSearch('alakazam')" class="quick-btn">Alakazam</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="pokemon-silhouette">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" alt="Pikachu" class="hero-pokemon">
+                    </div>
+                </div>
+            </div>
+
+            <div id="pokemonDisplay" class="pokemon-display">
+                <div class="placeholder">
+                    <div class="placeholder-icon">🎮</div>
+                    <p>Enter a Pokémon name or ID to get started</p>
+                    <small>Try: pikachu, charizard, or 25</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pokédex Section -->
+        <section id="pokedexSection" class="section">
+            <h2>Pokédex</h2>
+            <div class="filters">
+                <input type="text" id="filterType" placeholder="Filter by type..." onkeyup="filterPokedex()">
+                <select id="generationSelect" onchange="loadGeneration()">
+                    <option value="">All Generations</option>
+                    <option value="1">Generation 1 (Kanto)</option>
+                    <option value="2">Generation 2 (Johto)</option>
+                    <option value="3">Generation 3 (Hoenn)</option>
+                </select>
+            </div>
+            <div id="pokedexGrid" class="pokemon-grid"></div>
+            <div class="pagination">
+                <button onclick="prevPage()" class="btn-secondary">Previous</button>
+                <span id="pageInfo">Page 1</span>
+                <button onclick="nextPage()" class="btn-secondary">Next</button>
+            </div>
+        </section>
+
+        <!-- Favorites Section -->
+        <section id="favoritesSection" class="section">
+            <h2>Your Favorite Pokémon</h2>
+            <div id="favoritesList" class="pokemon-grid"></div>
+        </section>
+    </main>
+
+    <!-- Chatbot -->
+    <div id="chatbotContainer" class="chatbot-container">
+        <div class="chatbot-toggle" id="chatbotToggle" onclick="toggleChatbot()">
+            <span class="chatbot-icon">💬</span>
+        </div>
+        <div id="chatbotWindow" class="chatbot-window hidden">
+            <div class="chatbot-header">
+                <h3>Pokémon Assistant</h3>
+                <button class="chatbot-close" onclick="closeChatbot()">✕</button>
+            </div>
+            <div id="chatbotMessages" class="chatbot-messages"></div>
+            <div class="chatbot-input-area">
+                <input type="text" id="chatbotInput" placeholder="Ask about Pokémon..." class="chatbot-input" onkeypress="handleChatInput(event)">
+                <button onclick="sendChatMessage()" class="chatbot-send">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Pokémon Explorer | Data from PokéAPI</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
